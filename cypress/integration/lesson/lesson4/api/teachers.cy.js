@@ -3,12 +3,12 @@ let id;
 
 describe('teachers api', () => {
     it('GET /teachers', () => {
-      //const token = Cypress.env().managerToken;
-      const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hbmFnZXJAYWRtaW4uY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpZCI6MywiaWF0IjoxNjg0Nzk2MjM3LCJleHAiOjE2OTI1NzIyMzd9.9gCU4zjYE0xa2Ar_567B37Nxg5zQ7vbQt4bqIc_Fwzo';
+      const token = Cypress.env().managerToken;
+      //const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hbmFnZXJAYWRtaW4uY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpZCI6MywiaWF0IjoxNjg0Nzk2MjM3LCJleHAiOjE2OTI1NzIyMzd9.9gCU4zjYE0xa2Ar_567B37Nxg5zQ7vbQt4bqIc_Fwzo';
       const authorization = `bearer ${token}`;
       const options = {
         method: 'GET',
-        url: 'http://cms.chtoma.com/api/teachers',
+        url: `${Cypress.env().prod}/teachers`,
         headers: {
           authorization,
         },
