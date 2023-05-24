@@ -3,9 +3,6 @@ let id;
 describe('message api', () => {
   it('GET /message', () => {
     const token = Cypress.env().managerToken;
-    /*
-    const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hbmFnZXJAYWRtaW4uY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpZCI6MywiaWF0IjoxNjg0Nzk2MjM3LCJleHAiOjE2OTI1NzIyMzd9.9gCU4zjYE0xa2Ar_567B37Nxg5zQ7vbQt4bqIc_Fwzo';
-    */
     const authorization = `bearer ${token}`;
     const options = {
       method: 'GET',
@@ -14,9 +11,7 @@ describe('message api', () => {
         authorization,
       },
     };
-
     cy.request(options).then((res) => {
-      const data = res.body.data;
       expect(res.status).to.eq(200);
     });
   })
@@ -31,21 +26,12 @@ describe('message api', () => {
         authorization,
       },
       body: {
-        message: {
-          createdAt: "2023-05-24 06:03:12",
-          id: 1883,
-          content: "football",
-          status: 1,
-          type: "notification",
-          from: {
-            id: 3,
-            role: "manager",
-            nickname: "Carli Jast"
-        }
-      }
+        from: 2,
+        to: 1,
+        content: "play",
+        alertAt: "football"
+      },
     }
-  }
-
     cy.request(options).then((res) => {
       const data = res.body.data;
       expect(res.status).to.eq(201);
@@ -53,7 +39,6 @@ describe('message api', () => {
       id = data.id;
     });
   });
-
 
   it('PUT /update message', () => {
     const token = Cypress.env().managerToken;
@@ -65,43 +50,28 @@ describe('message api', () => {
         authorization,
       },
       body: {
-        id,
-         message: {
-          createdAt: "2023-05-24 06:03:12",
-          id: 1883,
-          content: "football",
-          status: 1,
-          type: "notification",
-          from: {
-            id: 3,
-            role: "manager",
-            nickname: "Carli Jast"
-          },
-        }
+        ids: [
+          "baseball"
+        ],
+        status: 0
       }
     }
-
     cy.request(options).then((res) => {
-      const data = res.body.data;
-      expect(data.id).to.eq(id);
+      expect(res.status).to.eq(200);
     })
   })
-
-
-
 
   it('DELETE /message', () => {
     const token = Cypress.env().managerToken;
     const authorization = `bearer ${token}`;
     const options = {
       method: 'DELETE',
-      url: `http://cms.chtoma.com/api/message/${id}`,
+      url: 'http://cms.chtoma.com/api/message/1',
       headers: {
         authorization,
       },
     };
     cy.request(options).then((res) => {
-      const data = res.body.data;
       expect(res.status).to.eq(200);
     });
   });
