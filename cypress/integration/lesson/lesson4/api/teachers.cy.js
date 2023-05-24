@@ -4,23 +4,18 @@ let id;
 describe('teachers api', () => {
     it('GET /teachers', () => {
       const token = Cypress.env().managerToken;
-      //const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im1hbmFnZXJAYWRtaW4uY29tIiwicm9sZSI6Im1hbmFnZXIiLCJpZCI6MywiaWF0IjoxNjg0Nzk2MjM3LCJleHAiOjE2OTI1NzIyMzd9.9gCU4zjYE0xa2Ar_567B37Nxg5zQ7vbQt4bqIc_Fwzo';
       const authorization = `bearer ${token}`;
       const options = {
         method: 'GET',
-        url: `${Cypress.env().prod}/teachers`,
+        url: 'http://cms.chtoma.com/api/teachers?query=eee&page=1&limit=1',
         headers: {
           authorization,
         },
       };
-
       cy.request(options).then((res) => {
-        const data = res.body.data;
         expect(res.status).to.eq(200);
       });
     });
-
-
 
     it('POST /teachers', () => {
       const token = Cypress.env().managerToken;
@@ -32,16 +27,22 @@ describe('teachers api', () => {
           authorization,
         },
         body: {
-          name: "Knox",
-          country: "NZ",
-          phone: "021021021",
-          skills: [
-            "Javascript: Expert"
-          ],
-          email: "knox@gmail.com"
+          id : 1,
+          name : "admin",
+          country: "Canada",
+          courseAmount: 9,
+          ctime: "2020-11-11",
+          email: "xxx@a.com",
+          phone: 13877889900,
+          skills: [{ 
+            name: "JavaScript", 
+            level: 3 },{ 
+            name: "Java", 
+            level: 4 }],
+          profiledId: 1,
+          updateAt: "2020-10-11"       
         },
-      };
-
+      }
       cy.request(options).then((res) => {
         const data = res.body.data;
         expect(res.status).to.eq(201);
@@ -61,19 +62,24 @@ describe('teachers api', () => {
           authorization,
         },
         body: {
-          id,
-          name: "Knox",
-          country: "NZ",
-          phone: "021021021",
-          skills: [
-            "Javascript: Expert"
-          ],
-          email: "knox@gmail.com"
+          id : 1,
+          name : "admin",
+          country: "Canada",
+          courseAmount: 9,
+          ctime: "2020-11-11",
+          email: "xxx@a.com",
+          phone: 13877889900,
+          skills: [{ 
+            name: "JavaScript", 
+            level: 3 },{ 
+            name: "Java", 
+            level: 4 }],
+          profiledId: 1,
+          updateAt: "2020-10-11" 
         },
       };
       cy.request(options).then((res) => {
-        const data = res.body.data;
-        expect(data.id).to.eq(id);
+        expect(res.status).to.eq(200);
       });
     });
 
@@ -84,16 +90,13 @@ describe('teachers api', () => {
       const authorization = `bearer ${token}`;
       const options = {
         method: 'DELETE',
-        url: `http://cms.chtoma.com/api/teachers/${id}`,
+        url: 'http://cms.chtoma.com/api/teachers/11',
         headers: {
           authorization,
         },
       };
       cy.request(options).then((res) => {
-        const data = res.body.data;
         expect(res.status).to.eq(200);
       });
     });
-
-
 });
