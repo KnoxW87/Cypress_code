@@ -1,0 +1,23 @@
+{
+  "code": 200,
+  "data": {
+    "cover": "http://lorempixel.com/800/600/technics/",
+    "createdAt": "2018-10-04 05:42:48",
+    "detail": "Labore ut explicabo et quis et. Minima non necessitatibus eos voluptatem. Iusto officiis unde deserunt beatae sunt totam repellat.",
+    "duration": 9,
+    "durationUnit": 1,
+    "id": 94,
+    "maxStudents": 1,
+    "name": "Brody Keebler V",
+    "price": 166,
+    "scheduleId": 94,
+    "star": 5,
+    "startTime": "1984-09-11 08:00:00",
+    "status": 0,
+    "teacherId": 94,
+    "teacherName": "Meta Gulgowski",
+    "uid": "7c149c06-cf76-3dc4-b7b9-a24cd0ff7740",
+    "updatedAt": "2023-05-29 03:28:24"
+  },
+  "msg": "success"
+}

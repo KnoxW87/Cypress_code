@@ -97,3 +97,11 @@ Cypress.Commands.add('setResolution', (size) => {
     cy.viewport(size);
   }
 });
+
+Cypress.Commands.add('managerLogin', () => {
+  cy.visit('https://cms-lyart.vercel.app')
+  cy.get('#menu a').contains('Sign in').click()
+  cy.get('#login_role > :nth-child(3)').click()
+  cy.get('#login_email').type('manager@admin.com')
+  cy.get('#login_password').type('111111')
+})
